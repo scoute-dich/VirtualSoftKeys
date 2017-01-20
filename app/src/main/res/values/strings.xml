@@ -18,40 +18,10 @@
     <string name="action_settings">Turn VirtualSoftKey\'s service on or off, Remember if the service is off you cannot use Soft Key Bar in your app.\n Remember, We care about users privacy and do not collect any data from users, this is an open source project and you can find the URL for the project on the main page.</string>
 
     <!--main activity-->
-    <string name="setting_gesture_height_title">Gesture height:</string>
-    <string name="setting_gesture_height_content">The height of touch area is</string>
-    <string name="setting_gesture_width_title">Gesture width:</string>
-    <string name="setting_gesture_width_content">The width of touch area is</string>
-    <string name="setting_gesture_position_title">Gesture position:</string>
-    <string name="setting_gesture_position_content">The position of touch area is</string>
-
-    <string name="setting_stylus_mode_title">Stylus mode:</string>
-    <string name="setting_stylus_mode_content">Select Stylus mode if your device supports stylus</string>
-    <string name="setting_stylus_mode_button">Stylus mode</string>
 
     <string name="config_name_title">Config:</string>
-    <string name="config_name_portrait">Portrait</string>
-    <string name="config_name_landscape">Landscape</string>
-    <string name="config_shared_title">Shared config</string>
-    <string name="config_disappear_time_title">Disappear:</string>
-    <string name="config_disappear_time_content">Time for disappearing Softkey bar</string>
-
-    <string name="setting_smart_hidden_title">Smart hidden(Experimental*):</string>
-    <string name="setting_smart_hidden_content">Auto hide the permanent Softkey bar when keyboard open\n(It\'s experimental function , close it if you have any problem)</string>
-    <string name="setting_smart_hidden_button">Smart hidden</string>
-
-    <string name="setting_rotate_hidden_title">Rotate hidden:</string>
-    <string name="setting_rotate_hidden_content">After screen rotate , the Softkey bar will be hidden</string>
-    <string name="setting_rotate_hidden_button">Rotate hidden</string>
 
     <!--Description Dialog-->
-    <string name="description_howtouse_title">How to use</string>
-    <string name="description_howtouse_content">Swiping up in touch view for opening the Softkey bar,then swiping down can cancel</string>
-    <string name="description_config_title">Screen config</string>
-    <string name="description_config_content">Rotating screen for changing the portrait or landscape config ,they are independent value in every config</string>
-    <string name="description_clsoe">Don\'t remind</string>
-    <string name="description_i_knew">I knew</string>
-
 
 
 </resources>

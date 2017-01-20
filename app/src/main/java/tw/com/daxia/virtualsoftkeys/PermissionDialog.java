@@ -1,23 +1,23 @@
-package tw.com.daxia.virtualsoftkeys.ui;
+package tw.com.daxia.virtualsoftkeys;
 
 import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 
-import tw.com.daxia.virtualsoftkeys.R;
-
 
 /**
- * Created by daxia on 2016/8/27.
+ * Created by daxia on 2016/8/27
  */
 public class PermissionDialog extends DialogFragment implements View.OnClickListener {
 
@@ -41,10 +41,12 @@ public class PermissionDialog extends DialogFragment implements View.OnClickList
         accessibilityPermission = getArguments().getBoolean("accessibilityPermission", false);
     }
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Dialog dialog = super.onCreateDialog(savedInstanceState);
         // request a window without the title
+        //noinspection ConstantConditions
         dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         setCancelable(false);
         return dialog;
@@ -66,13 +68,14 @@ public class PermissionDialog extends DialogFragment implements View.OnClickList
 
     private void initButton() {
         if (!systemAlertPermission && !accessibilityPermission) {
+            Log.i("OnScreenGesture", "Is running normal");
             //Use layout default value
         } else if (systemAlertPermission && !accessibilityPermission) {
             But_intent_system_alert.setText(getString(R.string.Permission_allowed));
             But_intent_system_alert.setEnabled(false);
             But_intent_accessibility.setText(getString(R.string.Permission_goto_page));
             But_intent_accessibility.setEnabled(true);
-        } else if (!systemAlertPermission && accessibilityPermission) {
+        } else if (!systemAlertPermission) {
             //User change the Permission without this dialog
             But_intent_system_alert.setText(getString(R.string.Permission_allow_system_alert_first_and_restart_service));
             But_intent_system_alert.setEnabled(true);
@@ -84,8 +87,11 @@ public class PermissionDialog extends DialogFragment implements View.OnClickList
     }
 
     private void gotoDrawOverlaysPage() {
-        Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                Uri.parse("package:" + getActivity().getPackageName()));
+        Intent intent = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                    Uri.parse("package:" + getActivity().getPackageName()));
+        }
         startActivity(intent);
     }
 
