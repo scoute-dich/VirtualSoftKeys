@@ -5,11 +5,11 @@ android {
     buildToolsVersion "25.0.0"
 
     defaultConfig {
-        applicationId "tw.com.daxia.virtualsoftkeys"
+        applicationId "de.baumann.vsb"
         minSdkVersion 21
         targetSdkVersion 25
         versionCode 5
-        versionName "0.1.4.20161014-1"
+        versionName "1.0"
     }
     buildTypes {
         release {

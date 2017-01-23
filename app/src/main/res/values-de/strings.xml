@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">VSB</string>
+    <string name="app_name_long">Virtual Swipe Button</string>
+    <string name="text_github">Besuche die Projektseite auf Github</string>
+    <string name="text_help">VSB platziert einen unsichtbaren Knopf an deinem unteren Bildschirmrand (siehe Bild unten).
+        Dieser ist immer vorhanden, auch wenn die Tastatur geöffnet ist. Sei beim Tippen also vorsichtig. Der Knopf hat verschiedene
+        Funktionen:&lt;br>&lt;br>
+
+        &lt;i>&lt;b>(Doppel) Klick:&lt;/i>&lt;/b>&lt;br>
+        löst die narmale Funtion des \"Home Knopfes\" aus.&lt;br>&lt;br>
+
+        &lt;i>&lt;b>Nach links wischen:&lt;/i>&lt;/b>&lt;br>
+        löst die narmale Funtion des \"zurück Knopfes\" aus.&lt;br>&lt;br>
+
+        &lt;i>&lt;b>Nach rechts wischen:&lt;/i>&lt;/b>&lt;br>
+        löst die narmale Funtion des \"letzte Anwendungen Knopfes\" aus
+
+        &lt;i>&lt;b>Nach oben wischen:&lt;/i>&lt;/b>&lt;br>
+        öffnet die Benachrichtigungen.
+    </string>
+    <string name="text_about">
+
+        Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
+    file except in compliance with the License. You may obtain a copy of the License at:
+    http://www.apache.org/licenses/LICENSE-2.0&lt;br>
+
+    Unless required by applicable law or agreed to in writing, software distributed under
+    the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+    either express or implied. See the License for the specific language governing permissions and
+    limitations under the License.&lt;br>&lt;br>
+
+        &lt;i>Diese Anwendung ist eine stark veränderte Version der Anwendung \"VirtualSoftKeys\" von \"erttyy8821\".
+        Sie ist ebenfalls unter der Apache Lizenz lizenziert. Den Code kannst du auf Github finden:
+        https://github.com/erttyy8821/VirtualSoftKeys&lt;/i>
+
+    </string>
+
+
+    <!--Permission Dialog-->
+    <string name="Permission_draw_overlays_title">1. Über Apps einblenden</string>
+    <string name="Permission_draw_overlays_content">Um zu funktionieren, musst du der App erlauben, sich über anderen Anwendungen
+        einblenden zu dürfen (Einstellungen > Anwendungen > Erweitert > Über anderen Anwendungen einblenden).</string>
+    <string name="Permission_accessibility_title">2. Bedienhilfen</string>
+    <string name="Permission_accessibility_content">Aktieviere dann die Bedienungshilfe (Einstellungen > Bedienhilfen >
+        VSB).</string>
+    <string name="Permission_goto_page">Zu den Einstellungen</string>
+    <string name="Permission_allow_system_alert_first">Erlaube \"Über anderen Anwendungen einblenden\".</string>
+    <string name="Permission_allowed">Berechtigung erteilt</string>
+    <string name="Permission_allow_system_alert_first_and_restart_service">Erlaube zuerst die Berechtigung, und wähle dann VSB in
+        den Bedienungshilfen aus.</string>
+    <string name="Toast_allow_system_alert_first">Erlaube zuerst die Einblendung über anderen Anwendungen</string>
+
+
+    <!--Accessibility setting-->
+    <string name="action_settings">Starte den VSB Hintergrunddienst. Wenn du dies nicht tust, kannst du die Anwendung nicht nutzen.</string>
+
+
+    <!--Remove Launcher Dialog-->
+    <string name="remove_launcher">Entferne Icon</string>
+    <string name="remove_launcher_message">Die Anwendung wird von der Systemliste der installierten Anwendungen entfernt. Um
+        das Icon wieder herzustellen musst du die App neu installieren.</string>
+
+</resources>

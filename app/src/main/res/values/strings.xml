@@ -1,27 +1,63 @@
 <resources>
-    <string name="app_name">VirtualSoftKeys</string>
+
+    <string name="app_name">VSB</string>
+    <string name="app_name_long">Virtual Swipe Button</string>
+    <string name="text_github">Visit project on Github</string>
+    <string name="text_help">VSB will put a invisible button at the bottom of your screen (see picture below). It will be there
+        at anytime, even when the keyboard is open. So be careful when typing. The button has several functions:&lt;br>&lt;br>
+
+        &lt;i>&lt;b>(Double) Touch:&lt;/i>&lt;/b>&lt;br>
+        trigger a regular \"home button\" press.&lt;br>&lt;br>
+
+        &lt;i>&lt;b>Swipe left:&lt;/i>&lt;/b>&lt;br>
+        trigger a regular \"back button\" press.&lt;br>&lt;br>
+
+        &lt;i>&lt;b>Swipe right:&lt;/i>&lt;/b>&lt;br>
+        trigger a regular \"recent button\" press.&lt;br>&lt;br>
+
+        &lt;i>&lt;b>Swipe up:&lt;/i>&lt;/b>&lt;br>
+        open notifications.
+    </string>
+    <string name="text_about">
+
+        Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
+    file except in compliance with the License. You may obtain a copy of the License at:
+    http://www.apache.org/licenses/LICENSE-2.0&lt;br>
+
+    Unless required by applicable law or agreed to in writing, software distributed under
+    the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+    either express or implied. See the License for the specific language governing permissions and
+    limitations under the License.&lt;br>&lt;br>
+
+        &lt;i>This app is a strongly modified version of the great app \"VirtualSoftKeys\" developed from \"erttyy8821\".
+    It is also licensed under the Apache License. You can find the source code on Github:
+    https://github.com/erttyy8821/VirtualSoftKeys&lt;/i>
+
+    </string>
+
 
     <!--Permission Dialog-->
     <string name="Permission_draw_overlays_title">1. Draw over other Apps</string>
-    <string name="Permission_draw_overlays_content">In order for app to work properly and show the navigation bar (Soft Key Bar) you need to allow the permissions to draw over other apps. \nSettings > Apps > Advanced > Draw over other apps</string>
+    <string name="Permission_draw_overlays_content">In order for app to work properly you need to allow the permissions
+        to draw over other apps (Settings > Apps > Advanced > Draw over other apps).</string>
     <string name="Permission_accessibility_title">2. Accessibility service</string>
-    <string name="Permission_accessibility_content">And then enable the Accessibility service. \nSettings > Accessibility > VirtualSoftKeys</string>
-    
+    <string name="Permission_accessibility_content">And then enable the Accessibility service (Settings > Accessibility >
+        VSB).</string>
     <string name="Permission_goto_page">Go to Settings</string>
     <string name="Permission_allow_system_alert_first">Please allow draw over apps permission</string>
     <string name="Permission_allowed">Permission Granted</string>
-    <string name="Permission_allow_system_alert_first_and_restart_service">"Please allow this permission first , and select VirtualSoftKeys in accessibility"</string>
-    <string name="Toast_allow_system_alert_first">"Please allow draw over apps permission first"</string>
+    <string name="Permission_allow_system_alert_first_and_restart_service">Please allow this permission first, and select
+        VSB in accessibility</string>
+    <string name="Toast_allow_system_alert_first">Please allow draw over apps permission first</string>
 
 
     <!--Accessibility setting-->
-    <string name="action_settings">Turn VirtualSoftKey\'s service on or off, Remember if the service is off you cannot use Soft Key Bar in your app.\n Remember, We care about users privacy and do not collect any data from users, this is an open source project and you can find the URL for the project on the main page.</string>
+    <string name="action_settings">Turn VSB\'s service on or off, if you do not do this you cannot use the app.</string>
 
-    <!--main activity-->
 
-    <string name="config_name_title">Config:</string>
-
-    <!--Description Dialog-->
-
+    <!--Remove Launcher Dialog-->
+    <string name="remove_launcher">Remove Launcher</string>
+    <string name="remove_launcher_message">The application icon will be removed from the system\'s applications list.
+        In order to restore the icon, please uninstall and reinstall the app.</string>
 
 </resources>

@@ -1,4 +1,21 @@
-package tw.com.daxia.virtualsoftkeys;
+/*
+    This file is part of the VSB.
+
+    Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
+    file except in compliance with the License. You may obtain a copy of the License at:
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software distributed under
+    the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+    either express or implied. See the License for the specific language governing permissions and
+    limitations under the License.
+
+    This app is a strongly modified version of the great app "VirtualSoftKeys" developed from "erttyy8821".
+    It is also under the Apache License. You can find the source code on Github:
+    https://github.com/erttyy8821/VirtualSoftKeys
+ */
+
+package de.baumann.vsb;
 
 import android.accessibilityservice.AccessibilityService;
 import android.graphics.PixelFormat;
@@ -17,8 +34,8 @@ import android.widget.Toast;
 
 public class ServiceFloating extends AccessibilityService  {
 
-    int longClickDuration = 2000;
-    boolean isLongPress = false;
+    private final int longClickDuration = 2000;
+    private boolean isLongPress = false;
 
 
     private boolean checkSystemAlertWindowPermission() {
@@ -40,9 +57,8 @@ public class ServiceFloating extends AccessibilityService  {
         ib.setBackgroundResource(R.drawable.button_background);
         ib.setImageResource(R.drawable.checkbox_blank_circle_outline);
 
-
         final WindowManager.LayoutParams params = new WindowManager.LayoutParams(
-                200, 100, WindowManager.LayoutParams.TYPE_PHONE,
+                100, 75, WindowManager.LayoutParams.TYPE_PHONE,
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
                 PixelFormat.TRANSLUCENT);
 
@@ -62,21 +78,36 @@ public class ServiceFloating extends AccessibilityService  {
         ib.setOnTouchListener(new OnSwipeTouchListener(ServiceFloating.this) {
 
             public void onSwipeTop() {
-                isLongPress = false;
                 performGlobalAction(AccessibilityService.GLOBAL_ACTION_NOTIFICATIONS);
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        isLongPress = false;
+                    }
+                }, 1000);
             }
             public void onSwipeRight() {
-                isLongPress = false;
                 performGlobalAction(AccessibilityService.GLOBAL_ACTION_RECENTS);
-
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        isLongPress = false;
+                    }
+                }, 1000);
             }
             public void onSwipeLeft() {
-                isLongPress = false;
                 performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        isLongPress = false;
+                    }
+                }, 1000);
             }
         });
-
-
 
         ib.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -95,7 +126,6 @@ public class ServiceFloating extends AccessibilityService  {
                 return true;
             }
         });
-
     }
 
     @Override
