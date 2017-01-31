@@ -19,12 +19,17 @@
 package de.baumann.vsb;
 
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.DialogFragment;
@@ -37,7 +42,12 @@ import android.text.SpannableString;
 import android.text.util.Linkify;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.CompoundButton;
+import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -53,11 +63,35 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        final int size = sharedPref.getInt("size", 70);
+
         TextView help = (TextView) findViewById(R.id.help);
         help.setText(textSpannable(getString(R.string.text_help)));
 
         TextView about = (TextView) findViewById(R.id.about);
         about.setText(textSpannable(getString(R.string.text_about)));
+
+        findViewById(R.id.buttonRestart).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                android.content.Intent iMain = new android.content.Intent();
+                iMain.setClassName(MainActivity.this, "de.baumann.vsb.MainActivity");
+                iMain.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                PendingIntent piMain = PendingIntent.getActivity(MainActivity.this, 2, iMain, 0);
+
+                //Following code will restart your application after 1 second
+                AlarmManager mgr = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, piMain);
+
+                //This will finish your activity manually
+                finish();
+
+                //This will stop your application and take out from it.
+                System.exit(2); //Prevents app from freezing
+                System.exit(1); // kill off the crashed app
+            }
+        });
 
         findViewById(R.id.buttonOpen).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +117,61 @@ public class MainActivity extends AppCompatActivity {
                         })
                         .setNegativeButton(android.R.string.cancel, null)
                         .create().show();
+            }
+        });
+
+        final Spinner sp_high = (Spinner)findViewById(R.id.spinner_high);
+
+        if (size == 50) {
+            sp_high.setSelection(0);
+        } else if (size == 60) {
+            sp_high.setSelection(1);
+        } else if (size == 70) {
+            sp_high.setSelection(2);
+        } else if (size == 80) {
+            sp_high.setSelection(3);
+        } else if (size == 90) {
+            sp_high.setSelection(4);
+        } else if (size == 100) {
+            sp_high.setSelection(5);
+        }
+
+        sp_high.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            public void onItemSelected(AdapterView<?> parent, View view, int pos,long id) {
+
+                Toast.makeText(parent.getContext(),
+                        "OnItemSelectedListener : " + parent.getItemAtPosition(pos).toString(),
+                        Toast.LENGTH_SHORT).show();
+
+                int high= Integer.parseInt(sp_high.getSelectedItem().toString());
+                sharedPref.edit().putInt("size", high).apply();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+
+        Switch switch_vis = (Switch) findViewById(R.id.switch_vis);
+        if (sharedPref.getString("visible", "true").equals("true")){
+            switch_vis.setChecked(true);
+        } else {
+            switch_vis.setChecked(false);
+        }
+        switch_vis.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,
+                                         boolean isChecked) {
+                if(isChecked){
+                    sharedPref.edit().putString("visible", "true").apply();
+                }else{
+                    sharedPref.edit().putString("visible", "false").apply();
+                }
+
             }
         });
     }

@@ -18,9 +18,11 @@
 package de.baumann.vsb;
 
 import android.accessibilityservice.AccessibilityService;
+import android.content.SharedPreferences;
 import android.graphics.PixelFormat;
 import android.os.Build;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.Gravity;
@@ -37,7 +39,6 @@ public class ServiceFloating extends AccessibilityService  {
     private final int longClickDuration = 2000;
     private boolean isLongPress = false;
 
-
     private boolean checkSystemAlertWindowPermission() {
         //noinspection SimplifiableIfStatement
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
@@ -52,13 +53,21 @@ public class ServiceFloating extends AccessibilityService  {
 
         WindowManager windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
 
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        int size = sharedPref.getInt("size", 70);
+
         ImageButton ib = new ImageButton(this);
-        ib.setLayoutParams(new ViewGroup.LayoutParams(72, 72));
-        ib.setBackgroundResource(R.drawable.button_background);
-        ib.setImageResource(R.drawable.checkbox_blank_circle_outline);
+        ib.setLayoutParams(new ViewGroup.LayoutParams(size, size));
+
+        if (sharedPref.getString("visible", "true").equals("true")) {
+            ib.setBackgroundResource(R.drawable.button_background);
+        } else {
+            ib.setBackgroundResource(R.drawable.button_background_invisible);
+        }
+
 
         final WindowManager.LayoutParams params = new WindowManager.LayoutParams(
-                100, 75, WindowManager.LayoutParams.TYPE_PHONE,
+                size, size, WindowManager.LayoutParams.TYPE_PHONE,
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
                 PixelFormat.TRANSLUCENT);
 

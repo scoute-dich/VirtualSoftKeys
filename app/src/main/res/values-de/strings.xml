@@ -4,18 +4,18 @@
     <string name="app_name">VSB</string>
     <string name="app_name_long">Virtual Swipe Button</string>
     <string name="text_github">Besuche die Projektseite auf Github</string>
-    <string name="text_help">VSB platziert einen unsichtbaren Knopf an deinem unteren Bildschirmrand (siehe Bild unten).
+    <string name="text_help">VSB platziert eine halbtransparente Taste an deinem unteren Bildschirmrand.
         Dieser ist immer vorhanden, auch wenn die Tastatur geöffnet ist. Sei beim Tippen also vorsichtig. Der Knopf hat verschiedene
         Funktionen:&lt;br>&lt;br>
 
         &lt;i>&lt;b>(Doppel) Klick:&lt;/i>&lt;/b>&lt;br>
-        löst die narmale Funtion des \"Home Knopfes\" aus.&lt;br>&lt;br>
+        löst die narmale Funtion der \"Home Taste\" aus.&lt;br>&lt;br>
 
         &lt;i>&lt;b>Nach links wischen:&lt;/i>&lt;/b>&lt;br>
-        löst die narmale Funtion des \"zurück Knopfes\" aus.&lt;br>&lt;br>
+        löst die narmale Funtion der \"zurück Taste\" aus.&lt;br>&lt;br>
 
         &lt;i>&lt;b>Nach rechts wischen:&lt;/i>&lt;/b>&lt;br>
-        löst die narmale Funtion des \"letzte Anwendungen Knopfes\" aus
+        löst die narmale Funtion der \"letzte Anwendungen Taste\" aus
 
         &lt;i>&lt;b>Nach oben wischen:&lt;/i>&lt;/b>&lt;br>
         öffnet die Benachrichtigungen.
@@ -36,6 +36,18 @@
         https://github.com/erttyy8821/VirtualSoftKeys&lt;/i>
 
     </string>
+
+    <string name="text_settings">
+        Hier kannst du die Größe von VSB einstellen. Du kannst die Taste auch unsichtbar machen und das Launcher Icon von VSB
+        verstecken.</string>
+
+
+    <!--UI-->
+
+    <string name="butt_size">Tastengröße</string>
+    <string name="butt_show">Zeige Taste</string>
+    <string name="butt_restart">Service neustarten</string>
+    <string name="title_settings">Einstellungen</string>
 
 
     <!--Permission Dialog-->
@@ -58,7 +70,7 @@
 
 
     <!--Remove Launcher Dialog-->
-    <string name="remove_launcher">Entferne Icon</string>
+    <string name="remove_launcher">Verstecke Icon</string>
     <string name="remove_launcher_message">Die Anwendung wird von der Systemliste der installierten Anwendungen entfernt. Um
         das Icon wieder herzustellen musst du die App neu installieren.</string>
 

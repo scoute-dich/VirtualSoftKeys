@@ -1,9 +1,9 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="app_name">VSB</string>
     <string name="app_name_long">Virtual Swipe Button</string>
     <string name="text_github">Visit project on Github</string>
-    <string name="text_help">VSB will put a invisible button at the bottom of your screen (see picture below). It will be there
+    <string name="text_help">VSB will put a semi transparent button at the bottom of your screen. It will be there
         at anytime, even when the keyboard is open. So be careful when typing. The button has several functions:&lt;br>&lt;br>
 
         &lt;i>&lt;b>(Double) Touch:&lt;/i>&lt;/b>&lt;br>
@@ -18,8 +18,8 @@
         &lt;i>&lt;b>Swipe up:&lt;/i>&lt;/b>&lt;br>
         open notifications.
     </string>
-    <string name="text_about">
 
+    <string name="text_about">
         Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
     file except in compliance with the License. You may obtain a copy of the License at:
     http://www.apache.org/licenses/LICENSE-2.0&lt;br>
@@ -31,12 +31,23 @@
 
         &lt;i>This app is a strongly modified version of the great app \"VirtualSoftKeys\" developed from \"erttyy8821\".
     It is also licensed under the Apache License. You can find the source code on Github:
-    https://github.com/erttyy8821/VirtualSoftKeys&lt;/i>
+    https://github.com/erttyy8821/VirtualSoftKeys&lt;/i></string>
 
-    </string>
+    <string name="text_settings">
+        Here you can configure the size of VSB. You can also make the button invisible and hide the
+        launcher icon of VSB.</string>
+
+
+    <!--UI-->
+
+    <string name="butt_size">Button size</string>
+    <string name="butt_show">Show button</string>
+    <string name="butt_restart">Restart service</string>
+    <string name="title_settings">Settings</string>
 
 
     <!--Permission Dialog-->
+
     <string name="Permission_draw_overlays_title">1. Draw over other Apps</string>
     <string name="Permission_draw_overlays_content">In order for app to work properly you need to allow the permissions
         to draw over other apps (Settings > Apps > Advanced > Draw over other apps).</string>
@@ -56,8 +67,18 @@
 
 
     <!--Remove Launcher Dialog-->
-    <string name="remove_launcher">Remove Launcher</string>
+    <string name="remove_launcher">Hide icon</string>
     <string name="remove_launcher_message">The application icon will be removed from the system\'s applications list.
         In order to restore the icon, please uninstall and reinstall the app.</string>
+
+
+    <string-array name="high" tools:ignore="MissingTranslation">
+        <item>50</item>
+        <item>60</item>
+        <item>70</item>
+        <item>80</item>
+        <item>90</item>
+        <item>100</item>
+    </string-array>
 
 </resources>

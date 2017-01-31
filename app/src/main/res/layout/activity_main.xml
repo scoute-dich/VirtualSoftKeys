@@ -22,58 +22,115 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginEnd="5dp"
-                android:text="@string/app_name"
+                android:text="@string/app_name_long"
+                android:textColor="@color/colorAccent"
                 android:fontFamily="sans-serif-condensed"
                 android:typeface="sans"
                 android:textStyle="bold"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/app_name_long"
-                android:fontFamily="sans-serif-condensed"
-                android:typeface="sans"
-                android:textStyle="bold"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TextView
                 android:id="@+id/help"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_margin="@dimen/activity_vertical_margin"
                 android:text="@string/text_help"
                 android:fontFamily="sans-serif-condensed"
                 android:typeface="sans"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <ImageView
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:src="@drawable/screenshot"
-                tools:ignore="ContentDescription" />
+                android:text="@string/title_settings"
+                android:textColor="@color/colorAccent"
+                android:fontFamily="sans-serif-condensed"
+                android:typeface="sans"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:text="@string/text_settings"
+                android:fontFamily="sans-serif-condensed"
+                android:typeface="sans"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin">
+
+                <TextView
+                    android:text="@string/butt_show"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_toStartOf="@+id/switch_vis" />
+
+                <Switch
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/switch_vis"
+                    android:checked="false" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin">
+
+                <TextView
+                    android:text="@string/butt_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_toStartOf="@+id/spinner_high" />
+
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/spinner_high"
+                    android:entries="@array/high"
+                    android:prompt="@string/app_name"/>
+
+            </RelativeLayout>
 
             <Button
-                android:id="@+id/buttonRemoveLauncher"
+                android:id="@+id/buttonRestart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:text="@string/butt_restart" />
+
+            <Button
+                android:id="@+id/buttonRemoveLauncher"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_horizontal_margin"
                 android:text="@string/remove_launcher" />
 
             <ImageView
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
                 android:src="@drawable/github_circle"
                 tools:ignore="ContentDescription" />
 
@@ -102,6 +159,5 @@
         </LinearLayout>
 
     </ScrollView>
-
 
 </RelativeLayout>
