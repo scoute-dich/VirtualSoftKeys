@@ -47,7 +47,6 @@ import android.widget.CompoundButton;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -139,11 +138,6 @@ public class MainActivity extends AppCompatActivity {
         sp_high.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             public void onItemSelected(AdapterView<?> parent, View view, int pos,long id) {
-
-                Toast.makeText(parent.getContext(),
-                        "OnItemSelectedListener : " + parent.getItemAtPosition(pos).toString(),
-                        Toast.LENGTH_SHORT).show();
-
                 int high= Integer.parseInt(sp_high.getSelectedItem().toString());
                 sharedPref.edit().putInt("size", high).apply();
             }

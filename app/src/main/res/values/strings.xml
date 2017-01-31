@@ -35,7 +35,7 @@
 
     <string name="text_settings">
         Here you can configure the size of VSB. You can also make the button invisible and hide the
-        launcher icon of VSB.</string>
+        launcher icon of VSB. To apply changes you have to restart the service.</string>
 
 
     <!--UI-->

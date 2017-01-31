@@ -39,11 +39,10 @@
 
     <string name="text_settings">
         Hier kannst du die Größe von VSB einstellen. Du kannst die Taste auch unsichtbar machen und das Launcher Icon von VSB
-        verstecken.</string>
+        verstecken. Um die Änderungen zu übernehmen, musst du den Service neu starten.</string>
 
 
     <!--UI-->
-
     <string name="butt_size">Tastengröße</string>
     <string name="butt_show">Zeige Taste</string>
     <string name="butt_restart">Service neustarten</string>
