@@ -66,10 +66,12 @@
 
 
     <!--Accessibility setting-->
+
     <string name="action_settings">Starte den VSB Hintergrunddienst. Wenn du dies nicht tust, kannst du die Anwendung nicht nutzen.</string>
 
 
     <!--Remove Launcher Dialog-->
+
     <string name="remove_launcher">Verstecke Icon</string>
     <string name="remove_launcher_message">Die Anwendung wird von der Systemliste der installierten Anwendungen entfernt. Um
         das Icon wieder herzustellen musst du die App neu installieren.</string>
