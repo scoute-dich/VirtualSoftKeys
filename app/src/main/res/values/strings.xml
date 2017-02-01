@@ -3,7 +3,7 @@
     <string name="app_name">VSB</string>
     <string name="app_name_long">Virtual Swipe Button</string>
     <string name="text_github">Visit project on Github</string>
-    <string name="text_help">VSB will put a semi transparent button at the bottom of your screen. It will be there
+    <string name="text_help">VSB will put a semi transparent virtuel button at the bottom of your screen. It will be there
         at anytime, even when the keyboard is open. So be careful when typing. The button has several functions:&lt;br>&lt;br>
 
         &lt;i>&lt;b>(Double) Touch:&lt;/i>&lt;/b>&lt;br>
