@@ -39,6 +39,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
 import android.util.Log;
 import android.view.View;
@@ -56,20 +57,27 @@ public class MainActivity extends AppCompatActivity {
     private final static String MY_GIT_HUB_URL = "https://github.com/scoute-dich/VirtualSoftKeys";
     private final static String permissionDialogTAG = "permissionDialog";
 
+    private SharedPreferences sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        final int size = sharedPref.getInt("size", 70);
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        int size = sharedPref.getInt("size", 70);
+        String vsb_click = sharedPref.getString("vsb_click", getString(R.string.action_home));
+        String vsb_clickLong = sharedPref.getString("vsb_clickLong", getString(R.string.action_screen));
+        String vsb_swipeUp = sharedPref.getString("vsb_swipeUp", getString(R.string.action_power));
+        String vsb_swipeLeft = sharedPref.getString("vsb_swipeLeft", getString(R.string.action_notifications));
+        String vsb_swipeRight = sharedPref.getString("vsb_swipeRight", getString(R.string.action_quickSettings));
 
         TextView help = (TextView) findViewById(R.id.help);
         help.setText(textSpannable(getString(R.string.text_help)));
 
         TextView about = (TextView) findViewById(R.id.about);
         about.setText(textSpannable(getString(R.string.text_about)));
+        about.setMovementMethod(LinkMovementMethod.getInstance());
 
         findViewById(R.id.buttonRestart).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,36 +127,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final Spinner sp_high = (Spinner)findViewById(R.id.spinner_high);
-
-        if (size == 50) {
-            sp_high.setSelection(0);
-        } else if (size == 60) {
-            sp_high.setSelection(1);
-        } else if (size == 70) {
-            sp_high.setSelection(2);
-        } else if (size == 80) {
-            sp_high.setSelection(3);
-        } else if (size == 90) {
-            sp_high.setSelection(4);
-        } else if (size == 100) {
-            sp_high.setSelection(5);
-        }
-
-        sp_high.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            public void onItemSelected(AdapterView<?> parent, View view, int pos,long id) {
-                int high= Integer.parseInt(sp_high.getSelectedItem().toString());
-                sharedPref.edit().putInt("size", high).apply();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
-                // TODO Auto-generated method stub
-
-            }
-        });
-
         Switch switch_vis = (Switch) findViewById(R.id.switch_vis);
         if (sharedPref.getString("visible", "true").equals("true")){
             switch_vis.setChecked(true);
@@ -165,6 +143,90 @@ public class MainActivity extends AppCompatActivity {
                 }else{
                     sharedPref.edit().putString("visible", "false").apply();
                 }
+
+            }
+        });
+
+        final Spinner sp_high = (Spinner)findViewById(R.id.spinner_high);
+
+        if (size == 50) {
+            sp_high.setSelection(0);
+        } else if (size == 60) {
+            sp_high.setSelection(1);
+        } else if (size == 70) {
+            sp_high.setSelection(2);
+        } else if (size == 80) {
+            sp_high.setSelection(3);
+        } else if (size == 90) {
+            sp_high.setSelection(4);
+        } else if (size == 100) {
+            sp_high.setSelection(5);
+        } else if (size == 110) {
+            sp_high.setSelection(6);
+        } else if (size == 120) {
+            sp_high.setSelection(7);
+        }
+
+        sp_high.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            public void onItemSelected(AdapterView<?> parent, View view, int pos,long id) {
+                int high= Integer.parseInt(sp_high.getSelectedItem().toString());
+                sharedPref.edit().putInt("size", high).apply();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+
+        Spinner sp_click = (Spinner)findViewById(R.id.spinner_click);
+        setSpinner(sp_click, vsb_click, "vsb_click");
+
+        Spinner sp_clickLong = (Spinner)findViewById(R.id.spinner_clickLong);
+        setSpinner(sp_clickLong, vsb_clickLong, "vsb_clickLong");
+
+        Spinner sp_swipeUp = (Spinner)findViewById(R.id.spinner_swipeUp);
+        setSpinner(sp_swipeUp, vsb_swipeUp, "vsb_swipeUp");
+
+        Spinner sp_swipeLeft = (Spinner)findViewById(R.id.spinner_swipeLeft);
+        setSpinner(sp_swipeLeft, vsb_swipeLeft, "vsb_swipeLeft");
+
+        Spinner sp_swipeRight = (Spinner)findViewById(R.id.spinner_swipeRight);
+        setSpinner(sp_swipeRight, vsb_swipeRight, "vsb_swipeRight");
+
+    }
+
+    private void setSpinner (final Spinner spinner, String action, final String pref) {
+
+        if (action.equals(getString(R.string.action_home))) {
+            spinner.setSelection(0);
+        } else if (action.equals(getString(R.string.action_back))) {
+            spinner.setSelection(1);
+        } else if (action.equals(getString(R.string.action_recents))) {
+            spinner.setSelection(2);
+        } else if (action.equals(getString(R.string.action_notifications))) {
+            spinner.setSelection(3);
+        } else if (action.equals(getString(R.string.action_quickSettings))) {
+            spinner.setSelection(4);
+        } else if (action.equals(getString(R.string.action_power))) {
+            spinner.setSelection(5);
+        } else if (action.equals(getString(R.string.action_screen))) {
+            spinner.setSelection(6);
+        } else if (action.equals(getString(R.string.action_volume))) {
+            spinner.setSelection(7);
+        }
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            public void onItemSelected(AdapterView<?> parent, View view, int pos,long id) {
+                sharedPref.edit().putString(pref, spinner.getSelectedItem().toString()).apply();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
 
             }
         });

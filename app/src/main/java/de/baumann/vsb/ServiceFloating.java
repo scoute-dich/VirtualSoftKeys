@@ -18,10 +18,13 @@
 package de.baumann.vsb;
 
 import android.accessibilityservice.AccessibilityService;
+import android.app.admin.DevicePolicyManager;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.PixelFormat;
+import android.media.AudioManager;
 import android.os.Build;
-import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
@@ -35,9 +38,6 @@ import android.widget.Toast;
 
 
 public class ServiceFloating extends AccessibilityService  {
-
-    private final int longClickDuration = 2000;
-    private boolean isLongPress = false;
 
     private boolean checkSystemAlertWindowPermission() {
         //noinspection SimplifiableIfStatement
@@ -55,6 +55,11 @@ public class ServiceFloating extends AccessibilityService  {
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         int size = sharedPref.getInt("size", 70);
+        final String vsb_click = sharedPref.getString("vsb_click", getString(R.string.action_home));
+        final String vsb_clickLong = sharedPref.getString("vsb_clickLong", getString(R.string.action_screen));
+        final String vsb_swipeUp = sharedPref.getString("vsb_swipeUp", getString(R.string.action_power));
+        final String vsb_swipeLeft = sharedPref.getString("vsb_swipeLeft", getString(R.string.action_notifications));
+        final String vsb_swipeRight = sharedPref.getString("vsb_swipeRight", getString(R.string.action_quickSettings));
 
         ImageButton ib = new ImageButton(this);
         ib.setLayoutParams(new ViewGroup.LayoutParams(size, size));
@@ -80,61 +85,68 @@ public class ServiceFloating extends AccessibilityService  {
         ib.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                performGlobalAction(AccessibilityService.GLOBAL_ACTION_HOME);
+                actions(vsb_click);
             }
         });
 
         ib.setOnTouchListener(new OnSwipeTouchListener(ServiceFloating.this) {
 
             public void onSwipeTop() {
-                performGlobalAction(AccessibilityService.GLOBAL_ACTION_NOTIFICATIONS);
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        isLongPress = false;
-                    }
-                }, 1000);
+                actions(vsb_swipeUp);
             }
             public void onSwipeRight() {
-                performGlobalAction(AccessibilityService.GLOBAL_ACTION_RECENTS);
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        isLongPress = false;
-                    }
-                }, 1000);
+                actions(vsb_swipeRight);
             }
             public void onSwipeLeft() {
-                performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        isLongPress = false;
-                    }
-                }, 1000);
+                actions(vsb_swipeLeft);
             }
         });
 
         ib.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                isLongPress = true;
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (isLongPress) {
-                            performGlobalAction(AccessibilityService.GLOBAL_ACTION_POWER_DIALOG);
-                        }
-                    }
-                }, longClickDuration);
-                // TODO Auto-generated method stub
+                actions(vsb_clickLong);
                 return true;
             }
         });
+    }
+
+    private void actions (String action) {
+        if (action.equals(getString(R.string.action_home))) {
+            performGlobalAction(AccessibilityService.GLOBAL_ACTION_HOME);
+        } else if (action.equals(getString(R.string.action_back))) {
+            performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
+        } else if (action.equals(getString(R.string.action_recents))) {
+            performGlobalAction(AccessibilityService.GLOBAL_ACTION_RECENTS);
+        } else if (action.equals(getString(R.string.action_notifications))) {
+            performGlobalAction(AccessibilityService.GLOBAL_ACTION_NOTIFICATIONS);
+        } else if (action.equals(getString(R.string.action_quickSettings))) {
+            performGlobalAction(AccessibilityService.GLOBAL_ACTION_QUICK_SETTINGS);
+        } else if (action.equals(getString(R.string.action_power))) {
+            performGlobalAction(AccessibilityService.GLOBAL_ACTION_POWER_DIALOG);
+        } else if (action.equals(getString(R.string.action_screen))) {
+            try {
+
+                DevicePolicyManager mDevicePolicyManager;
+                ComponentName mComponentName;
+
+                mDevicePolicyManager = (DevicePolicyManager)getSystemService(
+                        Context.DEVICE_POLICY_SERVICE);
+                mComponentName = new ComponentName(ServiceFloating.this.getApplicationContext(), MyAdminReceiver.class);
+
+
+                boolean isAdmin = mDevicePolicyManager.isAdminActive(mComponentName);
+                if (isAdmin) {
+                    mDevicePolicyManager.lockNow();
+                }
+
+            } catch (Exception e) {
+                //accessibility is Enable
+            }
+        } else if (action.equals(getString(R.string.action_volume))) {
+            AudioManager audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+            audio.adjustStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_SAME, AudioManager.FLAG_SHOW_UI);
+        }
     }
 
     @Override

@@ -4,19 +4,7 @@
     <string name="app_name_long">Virtual Swipe Button</string>
     <string name="text_github">Visit project on Github</string>
     <string name="text_help">VSB will put a semi transparent virtuel button at the bottom of your screen. It will be there
-        at anytime, even when the keyboard is open. So be careful when typing. The button has several functions:&lt;br>&lt;br>
-
-        &lt;i>&lt;b>(Double) Touch:&lt;/i>&lt;/b>&lt;br>
-        trigger a regular \"home button\" press.&lt;br>&lt;br>
-
-        &lt;i>&lt;b>Swipe left:&lt;/i>&lt;/b>&lt;br>
-        trigger a regular \"back button\" press.&lt;br>&lt;br>
-
-        &lt;i>&lt;b>Swipe right:&lt;/i>&lt;/b>&lt;br>
-        trigger a regular \"recent button\" press.&lt;br>&lt;br>
-
-        &lt;i>&lt;b>Swipe up:&lt;/i>&lt;/b>&lt;br>
-        open notifications.
+        at anytime, even when the keyboard is open. So be careful when typing.
     </string>
 
     <string name="text_about">
@@ -34,16 +22,34 @@
     https://github.com/erttyy8821/VirtualSoftKeys&lt;/i></string>
 
     <string name="text_settings">
-        Here you can configure the size of VSB. You can also make the button invisible and hide the
+        Here you can configure the gestures and the size of VSB. You can also make the button invisible and hide the
         launcher icon of VSB. To apply changes you have to restart the service.</string>
 
 
     <!--UI-->
 
     <string name="butt_size">Button size</string>
+    <string name="butt_click">Click</string>
+    <string name="butt_clickLong">Long click</string>
+    <string name="butt_left">Swipe left</string>
+    <string name="butt_right">Swipe right</string>
+    <string name="butt_top">Swipe top</string>
     <string name="butt_show">Show button</string>
     <string name="butt_restart">Restart service</string>
     <string name="title_settings">Settings</string>
+
+
+    <!--Actions-->
+
+    <string name="action_home">Home</string>
+    <string name="action_back">Back</string>
+    <string name="action_recents">Recents</string>
+    <string name="action_notifications">Notifications</string>
+    <string name="action_quickSettings">Quick settings</string>
+    <string name="action_power">Power menu</string>
+    <string name="action_screen">Lock screen</string>
+    <string name="action_volume">Volume</string>
+
 
 
     <!--Permission Dialog-->
@@ -79,6 +85,19 @@
         <item>80</item>
         <item>90</item>
         <item>100</item>
+        <item>110</item>
+        <item>120</item>
+    </string-array>
+
+    <string-array name="click" tools:ignore="MissingTranslation">
+        <item>@string/action_home</item>
+        <item>@string/action_back</item>
+        <item>@string/action_recents</item>
+        <item>@string/action_notifications</item>
+        <item>@string/action_quickSettings</item>
+        <item>@string/action_power</item>
+        <item>@string/action_screen</item>
+        <item>@string/action_volume</item>
     </string-array>
 
 </resources>

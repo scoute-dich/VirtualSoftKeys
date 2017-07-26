@@ -68,22 +68,155 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_horizontal_margin"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin">
+                android:layout_marginStart="@dimen/activity_horizontal_margin" >
 
                 <TextView
-                    android:text="@string/butt_show"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_toStartOf="@+id/switch_vis" />
-
-                <Switch
+                    android:id="@+id/text_click"
+                    android:text="@string/butt_click"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Spinner
+                    android:id="@+id/spinner_click"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:id="@+id/switch_vis"
-                    android:checked="false" />
+                    android:entries="@array/click"
+                    android:prompt="@string/app_name"
+                    android:textAlignment="viewEnd"
+                    android:layout_toEndOf="@+id/text_click"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin" >
+
+                <TextView
+                    android:id="@+id/text_clickLong"
+                    android:text="@string/butt_clickLong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"  />
+
+                <Spinner
+                    android:id="@+id/spinner_clickLong"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:entries="@array/click"
+                    android:prompt="@string/app_name"
+                    android:textAlignment="viewEnd"
+                    android:layout_toEndOf="@+id/text_clickLong"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin" >
+
+                <TextView
+                    android:id="@+id/text_swipeUp"
+                    android:text="@string/butt_top"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Spinner
+                    android:id="@+id/spinner_swipeUp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:entries="@array/click"
+                    android:prompt="@string/app_name"
+                    android:textAlignment="viewEnd"
+                    android:layout_toEndOf="@+id/text_swipeUp"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin" >
+
+                <TextView
+                    android:id="@+id/text_swipeLeft"
+                    android:text="@string/butt_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Spinner
+                    android:id="@+id/spinner_swipeLeft"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:entries="@array/click"
+                    android:prompt="@string/app_name"
+                    android:textAlignment="viewEnd"
+                    android:layout_toEndOf="@+id/text_swipeLeft" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin">
+
+                <TextView
+                    android:id="@+id/text_swipeRight"
+                    android:text="@string/butt_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Spinner
+                    android:id="@+id/spinner_swipeRight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:entries="@array/click"
+                    android:prompt="@string/app_name"
+                    android:textAlignment="viewEnd"
+                    android:layout_toEndOf="@+id/text_swipeRight" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin" >
+
+                <TextView
+                    android:id="@+id/text_size"
+                    android:text="@string/butt_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/spinner_high"
+                    android:entries="@array/high"
+                    android:prompt="@string/app_name"
+                    android:textAlignment="viewEnd"
+                    android:layout_toEndOf="@+id/text_size" />
 
             </RelativeLayout>
 
@@ -95,19 +228,19 @@
                 android:layout_marginRight="@dimen/activity_horizontal_margin">
 
                 <TextView
-                    android:text="@string/butt_size"
+                    android:text="@string/butt_show"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_toStartOf="@+id/spinner_high" />
+                    android:layout_toStartOf="@+id/switch_vis" />
 
-                <Spinner
+                <Switch
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:id="@+id/spinner_high"
-                    android:entries="@array/high"
-                    android:prompt="@string/app_name"/>
+                    android:id="@+id/switch_vis"
+                    android:checked="false" />
 
             </RelativeLayout>
 

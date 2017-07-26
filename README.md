@@ -10,12 +10,21 @@ If you have any idea for any thing, please let me know!
 
 ## Features
 
-VSB will put a invisible button at the bottom of your screen. It will be there at anytime, even when the keyboard is open. So be careful when typing. The button has several functions:&lt;br>&lt;br>
+VSB will put a invisible button at the bottom of your screen. It will be there at anytime, even when the keyboard is open. So be careful when typing. The button has several triggers:
 
-* (Double) Touch: trigger a regular "home button" press.
-* Swipe left: trigger a regular "back button" press
-* Swipe right: trigger a regular "recent button" press.
-* Swipe up: open notifications.
+* Click: normal and long
+* Swipe: left, right, up
+
+For all of these triggers you can choose from different events:
+
+* Home: trigger home button
+* Back: trigger back button
+* Recents: trigger recents button
+* Notifications: open notifications
+* Quick settings: open Quick settings panel
+* Power menu: open regular power menu
+* Lock screen: lock the screen
+* Volume: open volume panel
 
 
 ## License

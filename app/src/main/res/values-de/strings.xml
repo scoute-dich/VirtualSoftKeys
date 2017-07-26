@@ -5,20 +5,7 @@
     <string name="app_name_long">Virtual Swipe Button</string>
     <string name="text_github">Besuche die Projektseite auf Github</string>
     <string name="text_help">VSB platziert eine halbtransparente virtuelle Taste an deinem unteren Bildschirmrand.
-        Diese ist immer vorhanden, auch wenn die Tastatur geöffnet ist. Sei beim Tippen also vorsichtig. Die Taste hat verschiedene
-        Funktionen:&lt;br>&lt;br>
-
-        &lt;i>&lt;b>(Doppel) Klick:&lt;/i>&lt;/b>&lt;br>
-        löst die normale Funktion der \"Home Taste\" aus.&lt;br>&lt;br>
-
-        &lt;i>&lt;b>Nach links wischen:&lt;/i>&lt;/b>&lt;br>
-        löst die normale Funktion der \"zurück Taste\" aus.&lt;br>&lt;br>
-
-        &lt;i>&lt;b>Nach rechts wischen:&lt;/i>&lt;/b>&lt;br>
-        löst die normale Funktion der \"letzte Anwendungen Taste\" aus.&lt;br>&lt;br>
-
-        &lt;i>&lt;b>Nach oben wischen:&lt;/i>&lt;/b>&lt;br>
-        öffnet die Benachrichtigungen.
+        Diese ist immer vorhanden, auch wenn die Tastatur geöffnet ist. Sei beim Tippen also vorsichtig.
     </string>
     <string name="text_about">
 
@@ -38,15 +25,32 @@
     </string>
 
     <string name="text_settings">
-        Hier kannst du die Größe von VSB einstellen. Du kannst die Taste auch unsichtbar machen und das Launcher Icon von VSB
-        verstecken. Um die Änderungen zu übernehmen, musst du den Service neu starten.</string>
+        Hier kannst du die einzelnen Gesten und die Größe von VSB einstellen. Du kannst die Taste auch unsichtbar machen
+        und das Launcher Icon von VSB verstecken. Um die Änderungen zu übernehmen, musst du den Service neu starten.</string>
 
 
     <!--UI-->
     <string name="butt_size">Tastengröße</string>
+    <string name="butt_click">Klick</string>
+    <string name="butt_clickLong">Langer Klick</string>
+    <string name="butt_left">Nach links wischen</string>
+    <string name="butt_right">Nach rechts wischen</string>
+    <string name="butt_top">Nach oben wischen</string>
     <string name="butt_show">Zeige Taste</string>
     <string name="butt_restart">Service neustarten</string>
     <string name="title_settings">Einstellungen</string>
+
+
+    <!--Actions-->
+
+    <string name="action_home">Home</string>
+    <string name="action_back">Zurück</string>
+    <string name="action_recents">Letzte Anwendungen</string>
+    <string name="action_notifications">Benachrichtigungen</string>
+    <string name="action_quickSettings">Schnelleinstellungen</string>
+    <string name="action_power">Powermenu</string>
+    <string name="action_screen">Bildschirm ausschalten</string>
+    <string name="action_volume">Lautstärke</string>
 
 
     <!--Permission Dialog-->
