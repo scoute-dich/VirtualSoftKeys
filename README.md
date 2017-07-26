@@ -18,13 +18,6 @@ VSB will put a invisible button at the bottom of your screen. It will be there a
 * Swipe up: open notifications.
 
 
-## Screenshot
-![](/screenshot/1.png) 
-![](/screenshot/2.png) 
-![](/screenshot/3.png) 
-
-
-
 ## License
 
 Copyright 2016 Gaukler Faun
