@@ -18,9 +18,11 @@
 package de.baumann.vsb;
 
 import android.accessibilityservice.AccessibilityService;
+import android.app.NotificationManager;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PixelFormat;
 import android.media.AudioManager;
@@ -144,8 +146,21 @@ public class ServiceFloating extends AccessibilityService  {
                 //accessibility is Enable
             }
         } else if (action.equals(getString(R.string.action_volume))) {
-            AudioManager audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-            audio.adjustStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_SAME, AudioManager.FLAG_SHOW_UI);
+            NotificationManager notificationManager =
+                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
+                    && !notificationManager.isNotificationPolicyAccessGranted()) {
+
+                Intent intent = new Intent(
+                        android.provider.Settings
+                                .ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS);
+
+                startActivity(intent);
+            } else {
+                AudioManager audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+                audio.adjustStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_SAME, AudioManager.FLAG_SHOW_UI);
+            }
         }
     }
 
