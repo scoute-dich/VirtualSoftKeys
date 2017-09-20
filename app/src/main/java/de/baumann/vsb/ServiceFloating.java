@@ -27,6 +27,7 @@ import android.content.SharedPreferences;
 import android.graphics.PixelFormat;
 import android.media.AudioManager;
 import android.os.Build;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
@@ -49,6 +50,7 @@ public class ServiceFloating extends AccessibilityService  {
         return Settings.canDrawOverlays(this);
     }
 
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -62,6 +64,7 @@ public class ServiceFloating extends AccessibilityService  {
         final String vsb_swipeUp = sharedPref.getString("vsb_swipeUp", getString(R.string.action_power));
         final String vsb_swipeLeft = sharedPref.getString("vsb_swipeLeft", getString(R.string.action_notifications));
         final String vsb_swipeRight = sharedPref.getString("vsb_swipeRight", getString(R.string.action_quickSettings));
+        final String vsb_clickDouble = sharedPref.getString("vsb_clickDouble", getString(R.string.action_quickSettings));
 
         ImageButton ib = new ImageButton(this);
         ib.setLayoutParams(new ViewGroup.LayoutParams(size, size));
@@ -84,10 +87,37 @@ public class ServiceFloating extends AccessibilityService  {
 
         windowManager.addView(ib, params);
 
-        ib.setOnClickListener(new View.OnClickListener() {
+        ib.setOnClickListener(new DoubleClickListener() {
+
+            boolean doubleClick = false;
+
             @Override
-            public void onClick(View v) {
-                actions(vsb_click);
+            public void onSingleClick() {
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (!doubleClick) {
+                            actions(vsb_click);
+                            doubleClick = false;
+                        }
+                    }
+                }, 250);
+            }
+
+            @Override
+            public void onDoubleClick() {
+
+                actions(vsb_clickDouble);
+                doubleClick = true;
+
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        doubleClick = false;
+                    }
+                }, 250);
             }
         });
 
@@ -128,39 +158,31 @@ public class ServiceFloating extends AccessibilityService  {
             performGlobalAction(AccessibilityService.GLOBAL_ACTION_POWER_DIALOG);
         } else if (action.equals(getString(R.string.action_screen))) {
             try {
-
                 DevicePolicyManager mDevicePolicyManager;
                 ComponentName mComponentName;
-
-                mDevicePolicyManager = (DevicePolicyManager)getSystemService(
-                        Context.DEVICE_POLICY_SERVICE);
+                mDevicePolicyManager = (DevicePolicyManager)getSystemService(Context.DEVICE_POLICY_SERVICE);
                 mComponentName = new ComponentName(ServiceFloating.this.getApplicationContext(), MyAdminReceiver.class);
-
-
                 boolean isAdmin = mDevicePolicyManager.isAdminActive(mComponentName);
                 if (isAdmin) {
                     mDevicePolicyManager.lockNow();
                 }
 
             } catch (Exception e) {
-                //accessibility is Enable
+                // do something
             }
         } else if (action.equals(getString(R.string.action_volume))) {
-            NotificationManager notificationManager =
-                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
-                    && !notificationManager.isNotificationPolicyAccessGranted()) {
-
-                Intent intent = new Intent(
-                        android.provider.Settings
-                                .ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS);
-
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && !notificationManager.isNotificationPolicyAccessGranted()) {
+                Intent intent = new Intent(android.provider.Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS);
                 startActivity(intent);
             } else {
                 AudioManager audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
                 audio.adjustStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_SAME, AudioManager.FLAG_SHOW_UI);
             }
+        } else if (action.equals(getString(R.string.action_nothing))) {
+            // do nothing
+            Log.i("OnScreenGesture", "Nothing to do");
         }
     }
 
@@ -187,4 +209,24 @@ public class ServiceFloating extends AccessibilityService  {
         //Do nothing
     }
 
+    abstract class DoubleClickListener implements View.OnClickListener {
+
+        private static final long DOUBLE_CLICK_TIME_DELTA = 300;//milliseconds
+
+        long lastClickTime = 0;
+
+        @Override
+        public void onClick(View v) {
+            long clickTime = System.currentTimeMillis();
+            if (clickTime - lastClickTime < DOUBLE_CLICK_TIME_DELTA){
+                onDoubleClick();
+            } else {
+                onSingleClick();
+            }
+            lastClickTime = clickTime;
+        }
+
+        public abstract void onSingleClick();
+        public abstract void onDoubleClick();
+    }
 }

@@ -21,18 +21,19 @@
         &lt;i>Diese Anwendung ist eine stark veränderte Version der Anwendung \"VirtualSoftKeys\" von \"erttyy8821\".
         Sie ist ebenfalls unter der Apache Lizenz lizenziert. Den Code kannst du auf Github finden:
         https://github.com/erttyy8821/VirtualSoftKeys&lt;/i>
-
     </string>
 
     <string name="text_settings">
         Hier kannst du die einzelnen Gesten und die Größe von VSB einstellen. Du kannst die Taste auch unsichtbar machen
         und das Launcher Icon von VSB verstecken. Um die Änderungen zu übernehmen, musst du den Service neu starten.</string>
+    <string name="app_deviceManager">Dies wird benötigt um den Bildschirm zu sperren.</string>
 
 
     <!--UI-->
     <string name="butt_size">Tastengröße</string>
     <string name="butt_click">Klick</string>
     <string name="butt_clickLong">Langer Klick</string>
+    <string name="butt_clickDouble">Doppelklick</string>
     <string name="butt_left">Nach links wischen</string>
     <string name="butt_right">Nach rechts wischen</string>
     <string name="butt_top">Nach oben wischen</string>
@@ -51,6 +52,7 @@
     <string name="action_power">Powermenu</string>
     <string name="action_screen">Bildschirm ausschalten</string>
     <string name="action_volume">Lautstärke</string>
+    <string name="action_nothing">Nichts</string>
 
 
     <!--Permission Dialog-->

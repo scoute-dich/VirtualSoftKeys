@@ -21,6 +21,8 @@ package de.baumann.vsb;
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.app.admin.DevicePolicyManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -48,6 +50,7 @@ import android.widget.CompoundButton;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -58,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
     private final static String permissionDialogTAG = "permissionDialog";
 
     private SharedPreferences sharedPref;
+
+    private static final int ADMIN_INTENT = 15;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
         String vsb_swipeUp = sharedPref.getString("vsb_swipeUp", getString(R.string.action_power));
         String vsb_swipeLeft = sharedPref.getString("vsb_swipeLeft", getString(R.string.action_notifications));
         String vsb_swipeRight = sharedPref.getString("vsb_swipeRight", getString(R.string.action_quickSettings));
+        String vsb_clickDouble = sharedPref.getString("vsb_clickDouble", getString(R.string.action_quickSettings));
 
         TextView help = (TextView) findViewById(R.id.help);
         help.setText(textSpannable(getString(R.string.text_help)));
@@ -86,14 +92,11 @@ public class MainActivity extends AppCompatActivity {
                 iMain.setClassName(MainActivity.this, "de.baumann.vsb.MainActivity");
                 iMain.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 PendingIntent piMain = PendingIntent.getActivity(MainActivity.this, 2, iMain, 0);
-
                 //Following code will restart your application after 1 second
                 AlarmManager mgr = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                 mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, piMain);
-
                 //This will finish your activity manually
                 finish();
-
                 //This will stop your application and take out from it.
                 System.exit(2); //Prevents app from freezing
                 System.exit(1); // kill off the crashed app
@@ -177,7 +180,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
                 // TODO Auto-generated method stub
-
             }
         });
 
@@ -186,6 +188,9 @@ public class MainActivity extends AppCompatActivity {
 
         Spinner sp_clickLong = (Spinner)findViewById(R.id.spinner_clickLong);
         setSpinner(sp_clickLong, vsb_clickLong, "vsb_clickLong");
+
+        Spinner sp_clickDouble = (Spinner)findViewById(R.id.spinner_clickDouble);
+        setSpinner(sp_clickDouble, vsb_clickDouble, "vsb_clickDouble");
 
         Spinner sp_swipeUp = (Spinner)findViewById(R.id.spinner_swipeUp);
         setSpinner(sp_swipeUp, vsb_swipeUp, "vsb_swipeUp");
@@ -214,8 +219,23 @@ public class MainActivity extends AppCompatActivity {
             spinner.setSelection(5);
         } else if (action.equals(getString(R.string.action_screen))) {
             spinner.setSelection(6);
+
+            DevicePolicyManager mDevicePolicyManager;
+            ComponentName mComponentName;
+            mDevicePolicyManager = (DevicePolicyManager)getSystemService(Context.DEVICE_POLICY_SERVICE);
+            mComponentName = new ComponentName(this.getApplicationContext(), MyAdminReceiver.class);
+            boolean isAdmin = mDevicePolicyManager.isAdminActive(mComponentName);
+            if (!isAdmin) {
+                Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
+                intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, mComponentName);
+                intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION,getString(R.string.app_deviceManager));
+                startActivityForResult(intent, ADMIN_INTENT);
+            }
+
         } else if (action.equals(getString(R.string.action_volume))) {
             spinner.setSelection(7);
+        } else if (action.equals(getString(R.string.action_nothing))) {
+            spinner.setSelection(8);
         }
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -230,6 +250,17 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == ADMIN_INTENT) {
+            if (resultCode == RESULT_OK) {
+                Toast.makeText(getApplicationContext(), "Registered As Admin", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(getApplicationContext(), "Failed to register as Admin", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)

@@ -24,6 +24,7 @@
     <string name="text_settings">
         Here you can configure the gestures and the size of VSB. You can also make the button invisible and hide the
         launcher icon of VSB. To apply changes you have to restart the service.</string>
+    <string name="app_deviceManager">This is needed to lock the screen.</string>
 
 
     <!--UI-->
@@ -31,6 +32,7 @@
     <string name="butt_size">Button size</string>
     <string name="butt_click">Click</string>
     <string name="butt_clickLong">Long click</string>
+    <string name="butt_clickDouble">Double click</string>
     <string name="butt_left">Swipe left</string>
     <string name="butt_right">Swipe right</string>
     <string name="butt_top">Swipe top</string>
@@ -49,6 +51,7 @@
     <string name="action_power">Power menu</string>
     <string name="action_screen">Lock screen</string>
     <string name="action_volume">Volume</string>
+    <string name="action_nothing">Nothing</string>
 
 
 
@@ -98,6 +101,7 @@
         <item>@string/action_power</item>
         <item>@string/action_screen</item>
         <item>@string/action_volume</item>
+        <item>@string/action_nothing</item>
     </string-array>
 
 </resources>

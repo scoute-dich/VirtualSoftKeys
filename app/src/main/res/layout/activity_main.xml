@@ -123,6 +123,32 @@
                 android:layout_marginStart="@dimen/activity_horizontal_margin" >
 
                 <TextView
+                    android:id="@+id/text_clickDouble"
+                    android:text="@string/butt_clickDouble"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"  />
+
+                <Spinner
+                    android:id="@+id/spinner_clickDouble"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:entries="@array/click"
+                    android:prompt="@string/app_name"
+                    android:textAlignment="viewEnd"
+                    android:layout_toEndOf="@+id/text_clickDouble"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin" >
+
+                <TextView
                     android:id="@+id/text_swipeUp"
                     android:text="@string/butt_top"
                     android:layout_width="wrap_content"
